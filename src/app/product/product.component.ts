@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product, ProductService} from "../shared/product.service";
+import {FormControl} from "@angular/forms";
+import "rxjs/Rx";
 
 @Component({
   selector: 'app-product',
@@ -8,7 +10,14 @@ import {Product, ProductService} from "../shared/product.service";
 })
 export class ProductComponent implements OnInit {
   public products: Product[];
-  constructor(private productService: ProductService) { }
+  public keyword:string;
+  public titleFilter:FormControl = new FormControl();
+  constructor(private productService: ProductService) {
+    this.titleFilter.valueChanges
+      .subscribe(
+      value => this.keyword = value
+    );
+  }
   //钩子函数，组件初始化时只执行一次，用于初始化数据
   ngOnInit() {
     this.products = this.productService.getProducts();
