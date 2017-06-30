@@ -1,18 +1,30 @@
 <div class="thumbnail">
   <img src="http://placehold.it/820x320">
   <div>
-    <h4 class="pull-right">{{product.price}}元</h4>
-    <h4>{{product.title}}</h4>
-    <h4>{{product.desc}}</h4>
+    <h4 class="pull-right">{{product?.price}}元</h4>
+    <h4>{{product?.title}}</h4>
+    <h4>{{product?.desc}}</h4>
   </div>
   <div>
     <p class="pull-right"></p>
     <p>
-      <app-stars [rating]="product.rating"></app-stars>
+      <app-stars [rating]="product?.rating"></app-stars>
     </p>
   </div>
 </div>
 <div class="well">
+  <div>
+    <button [class] ="isCommentHidden?'btn btn-success':'btn btn-error'" (click)="isCommentHidden=!isCommentHidden">{{isCommentHidden?'发表评论': '收起评论'}}</button>
+  </div>
+  <div [hidden]="isCommentHidden">
+    <div><app-stars [readonly]="false" (ratingNew)="ratingHandler($event)" [(rating)]= 'newRating'></app-stars></div>
+    <div>
+      <textarea [(ngModel)]="newComment"></textarea>
+    </div>
+    <div>
+      <button class="btn" (click)="addComment()">提交</button>
+    </div>
+  </div>
   <div class="row" *ngFor="let comment of comments">
     <hr>
     <div class="col-md-12">
