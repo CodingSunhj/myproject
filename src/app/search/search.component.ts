@@ -37,9 +37,8 @@ export class SearchComponent implements OnInit {
 
   onSearch(){
     let value: any = this.formModule.get('title').errors;
-    console.log('校验结果'+JSON.stringify(value));
+    // console.log('校验结果'+JSON.stringify(value));
     if(this.formModule.valid){
-      console.log(this.formModule.value);
       this.productService.searchEvent.emit(this.formModule.value);
     }
   }

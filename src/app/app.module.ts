@@ -8,7 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ProductComponent } from './product/product.component';
 import { StarsComponent } from './stars/stars.component';
-import {HttpModule} from "@angular/http";
+import {HttpModule, JsonpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HomeComponent } from './home/home.component';
@@ -38,7 +38,8 @@ const routeConfig: Routes = [
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routeConfig),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JsonpModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
